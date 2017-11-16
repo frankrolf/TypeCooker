@@ -1,5 +1,5 @@
 
-// The previous implementations relied on external frameworks to do the work. 
+// The previous implementations relied on external frameworks to do the work.
 // It seems TypeCooker tends to outlive these frameworks. This makes maintenance
 // a bit more difficult. So instead, for this implementation, let's use only
 // canonical javascript. http://youmightnotneedjquery.com
@@ -126,10 +126,10 @@ function getParameterByName(name) {
 
 function buildObjFromHash(hash) {
 	// replace any possible starting # sign
-	hash = hash.replace(/^#/, ""); 
+	hash = hash.replace(/^#/, "");
 
 	// iterate though all & seperated paramater - value pairs
-	var parts = hash.split("&"); 
+	var parts = hash.split("&");
 	var obj = {};
 	for (part in parts) {
 		var components = parts[part].split("=");
@@ -149,7 +149,7 @@ function buildHashFromObj(obj) {
 
 // build parameter unit
 var buildParameter = function(parameterName){
-	// build the structure for the parameter, but without any contents. 
+	// build the structure for the parameter, but without any contents.
 	var t = "";
 	var parameterNameAsClass = parameterName.replace(/\s+/g, '');
 	var parameterExplainAsClass = parameterNameAsClass+"explain";
@@ -201,7 +201,7 @@ var showExplain = function(){
 // build the "recipe" html for all parameterNames
 var buildRecipe = function (parameterNames) {
 	for(var i=0;i<parameterNames.length;i++){
-		document.getElementById("recipe").innerHTML += buildParameter(parameterNames[i]);	    	
+		document.getElementById("recipe").innerHTML += buildParameter(parameterNames[i]);
     }
 }
 
@@ -216,8 +216,8 @@ var buildSelection = function(selection, thisName) {
 	var el = document.getElementById(parameterNameAsClass);
 	var nameCode = "explainParameter(\'"+parameterNameAsClass+"\');";
 	var thisNameLink = "<a onclick=\""+nameCode+"\">"+thisName+"</a>";
-	el.innerHTML = thisNameLink+el.innerHTML;	    	
-	document.getElementById(parameterNameAsClass+"choice").innerHTML = selection.name;	    	
+	el.innerHTML = thisNameLink+el.innerHTML;
+	document.getElementById(parameterNameAsClass+"choice").innerHTML = selection.name;
 	document.getElementById(parameterNameAsClass+"explain").innerHTML = d;
 }
 
@@ -257,9 +257,9 @@ var makeSelection = function(level, data){
 	var parameterNames = [];
 	for(var key in data){
 		parameterNames.push(key);
-	}	
+	}
 
-    parameterNames = shuffle(parameterNames);
+    // parameterNames = shuffle(parameterNames);
  	buildRecipe(parameterNames);
 
  	for(var i=0;i<parameterNames.length;i++){
